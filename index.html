@@ -10,9 +10,18 @@
 
 <style>
 body {
-  font-size: 14pt;
+  font-size: 16px;
   font-family: Helvetica Neue, sans-serif;
   font-weight: 300;
+  padding:0px;
+  margin:0;
+}
+.highlightNext{  
+-webkit-transition: background-color 1s;
+  background: linear-gradient(to bottom, #e6f0a3 0%,#d2e638 50%,#c3d825 51%,#dbf043 100%); /* W3C */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e6f0a3), color-stop(50%,#d2e638), color-stop(51%,#c3d825), color-stop(100%,#dbf043)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #e6f0a3 0%,#d2e638 50%,#c3d825 51%,#dbf043 100%); /* Chrome10+,Safari5.1+ */
+
 }
 
 h2 { font-weight: normal; margin: 2px 0px; padding: 0px;}
@@ -37,10 +46,18 @@ item {
   clear: both; 
   display: block;
   border-bottom: 1px solid #EEE;
+  height:42px;
+  text-indent: 20px;
+  background-position: 0 0;
+    -webkit-transition: all 0.8s linear;
+          transition: all 0.8s linear;
 }
 
 .completed {
   text-decoration: line-through;
+  color: #000;
+  opacity: 0.6;
+  -webkit-transition: opacity 1000ms linear;
 }
 
 footer { 
@@ -48,6 +65,26 @@ footer {
   margin-top: 25px;
   font-size: small;
 }
+.debugInfo{font-size: 8px; display: blokc; position: absolute; bottom:2px; right:2px;}
+.reset{-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#777777;
+  font-family:arial;
+  font-size:12px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:1px 1px 0px #ffffff; width:168px; margin-right:-40px; margin-top:10px;}
+
+  .reset a{color: #666; text-decoration: none;}
 </style>
 
 <script type="text/javascript">
@@ -265,6 +302,7 @@ if (!window.localStorage) {
     $('#item'+num).removeClass('completed');
     completed = completed - 1;
     updateCompleted();
+    $(this).removeClass("highlightNext");
   }
 
   // delete all data
@@ -278,6 +316,8 @@ if (!window.localStorage) {
   function updateCompleted() {
     $('#completed').html(completed);
     $('#perc').html(100*completed/total);
+    $('item div.str:not(.completed):first').parent().addClass("highlightNext", "500");
+    $('.completed').parent().removeClass("highlightNext", "500");
   }
 
   // on document load
@@ -294,6 +334,11 @@ if (!window.localStorage) {
     // attach checkBoxEvent to checkbox and list item
     $('.cbox').click(checkBoxEvent);
     $('.str').click(checkBoxEvent);
+
+
+
+
+//$('item div.str:not(.completed):first').addClass("highlightNext");
 
   });
 
@@ -356,6 +401,6 @@ if (!window.localStorage) {
 <footer>
   
 </footer>
-
+<span class="debugInfo">Version: 0.1.01 jQuery:1.4.2 #:</span>
 </body>
 </html>
