@@ -82,7 +82,7 @@ footer {
   font-weight:bold;
   padding:6px 24px;
   text-decoration:none;
-  text-shadow:1px 1px 0px #ffffff; width:168px; margin-right:-40px; margin-top:10px;}
+  text-shadow:1px 1px 0px #ffffff;  margin-right:-40px; margin-top:10px;}
 
   .reset a{color: #666; text-decoration: none;}
 
@@ -844,6 +844,20 @@ if (!window.localStorage) {
   }
 
   // on document load
+
+
+
+
+//Add to homescreen
+var addToHomeConfig = {
+  returningVisitor: true,   // Show the message only to returning visitors (ie: don't show it the first time)
+  expire: 999999999999         // Show the message only once every 12 hours
+};
+
+
+
+
+
   $(document).ready(function() {
 
     // loop through list items
@@ -859,24 +873,13 @@ if (!window.localStorage) {
     $('.str').click(checkBoxEvent);
 
 
+    var quotes = new Array("Clear!", "Woah! Push me to clear the list", "Good morning? Clear me ;)", "Push me before your 1st cup of tea."),
+    randno = quotes[Math.floor( Math.random() * quotes.length )];
+    $('#clearBtn').text( randno );
 
 
-//$('item div.str:not(.completed):first').addClass("highlightNext");
 
   });
-
-
-
-//Add to homescreen
-var addToHomeConfig = {
-  returningVisitor: true,   // Show the message only to returning visitors (ie: don't show it the first time)
-  expire: 999999999999         // Show the message only once every 12 hours
-};
-
-
-
-
-
 </script>
 
 </head>
@@ -889,7 +892,7 @@ var addToHomeConfig = {
   <!-- STATS -->
   <div id="stats">
    <!-- Complete: <span id="completed">0</span> of 10 (<span id="perc">0</span>%)-->
-    <span class="reset"><a href="javascript:resetList()" onClick="return confirm('This will erase the current meds, continue?');">New day? Reset me please :)</a></span>
+    <span class="reset"><a href="javascript:resetList()" onClick="return confirm('This will erase the current meds, continue?');" id="clearBtn"></a></span>
   </div>
 
 </header>
@@ -906,25 +909,26 @@ var addToHomeConfig = {
 </item>
 <item>
   <div id="no2" class="col"><input type="checkbox" id="cb2" class="cbox"></div>
-  <div id="item2" class="col str">AM Calcium</div>
+  <div id="item2" class="col str">AM Vitamin D</div>
 </item>
 
 <item>
   <div id="no3" class="col"><input type="checkbox" id="cb3" class="cbox"></div>
-  <div id="item3" class="col str">AM Vitamin D</div>
+  <div id="item3" class="col str">AM Calcium</div>
 </item>
 
 <item>
   <div id="no4" class="col"><input type="checkbox" id="cb4" class="cbox"></div>
   <div id="item4" class="col str">Midday Calcium</div>
 </item>
-
-
 <item>
   <div id="no5" class="col"><input type="checkbox" id="cb5" class="cbox"></div>
-  <div id="item7" class="col str">PM Calcium</div>
+  <div id="item5" class="col str">PM Calcium</div>
 </item>
-
+<item>
+  <div id="no6" class="col"><input type="checkbox" id="cb6" class="cbox"></div>
+  <div id="item6" class="col str">PM Calcium</div>
+</item>
 
 
 </list>
@@ -932,6 +936,6 @@ var addToHomeConfig = {
 <footer>
   
 </footer>
-<span class="debugInfo">Version: 0.3.0b #:a7c7c4c0d217c859fba72f2242e5fd5ecdddf9c1</span>
+<span class="debugInfo">Version: 0.3.1</span>
 </body>
 </html>
